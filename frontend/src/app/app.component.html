@@ -1,0 +1,133 @@
+﻿<!-- nav USER TOP-->
+<nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light" *ngIf="user">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarUserTopSupportedContent" aria-controls="navbarUserTopSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarUserTopSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" routerLinkActive="active" id="foodDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Food
+        </a>
+        <div class="dropdown-menu" aria-labelledby="foodDropdown">
+          <a class="dropdown-item" routerLink="food-products" routerLinkActive="active">Product catalog</a>
+          <a class="dropdown-item" routerLink="food-recipes" href="#">Recipies library</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" routerLink="/" routerLinkActive="active" id="feedDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Feed
+        </a>
+        <div class="dropdown-menu" aria-labelledby="feedDropdown">
+          <a class="dropdown-item" href="#">Nutrition program</a>
+          <a class="dropdown-item" href="#">Feeding calendar</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" routerLink="/" routerLinkActive="active" id="fitDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Fit
+        </a>
+        <div class="dropdown-menu" aria-labelledby="fitDropdown">
+          <a class="dropdown-item" href="#">Fitness program</a>
+          <a class="dropdown-item" href="#">Sport calendar</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" (click)="logout()">Logout</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<!-- nav USER bottom -->
+<nav class="navbar fixed-bottom navbar-expand-lg navbar-light bg-light" *ngIf="user">
+  <a class="navbar-brand" href="http://www.3f.prgtest.ru">&copy; 2020 telebob</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarUserBottomSupportedContent" aria-controls="navbarUserBottomSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarUserBottomSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item dropup">
+        <a class="nav-link dropdown-toggle" routerLink="/" routerLinkActive="active" id="creditsDropup" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Credits
+        </a>
+        <div class="dropdown-menu" aria-labelledby="creditsDropup">
+          <a class="dropdown-item" href="https://jasonwatmore.com/post/2020/04/28/angular-9-user-registration-and-login-example-tutorial">User management</a>
+          <a class="dropdown-item" href="https://getbootstrap.com/docs/4.1/utilities/position/">Nav positions</a>
+          <a class="dropdown-item" href="https://getbootstrap.com/docs/4.0/components/dropdowns/#dropup-variation">Dropup variation</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<!-- nav GUEST TOP-->
+<nav class="navbar navbar-expand-lg navbar-light bg-light" *ngIf="!user">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarGuestTopSupportedContent" aria-controls="navbarGuestTopSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarGuestTopSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Dropdown
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#">Disabled</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<!-- nav GUEST bottom -->
+<nav class="navbar fixed-bottom navbar-expand-lg navbar-light bg-light" *ngIf="!user">
+  <a class="navbar-brand" href="http://www.3f.prgtest.ru">&copy; 2020 telebob</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarGuestBottomSupportedContent" aria-controls="navbarGuestBottomSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarGuestBottomSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item dropup">
+        <a class="nav-link dropdown-toggle" routerLink="/" routerLinkActive="active" id="creditsDropup" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Credits
+        </a>
+        <div class="dropdown-menu" aria-labelledby="creditsDropup">
+          <a class="dropdown-item" href="https://jasonwatmore.com/post/2020/04/28/angular-9-user-registration-and-login-example-tutorial">User management</a>
+          <a class="dropdown-item" href="https://getbootstrap.com/docs/4.1/utilities/position/">Nav positions</a>
+          <a class="dropdown-item" href="https://getbootstrap.com/docs/4.0/components/dropdowns/#dropup-variation">Dropup variation</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+
+
+<!-- main app container -->
+<div class="app-container" [ngClass]="{ 'bg-light': user }">
+    <alert></alert>
+    <router-outlet></router-outlet>
+</div>
