@@ -28,7 +28,7 @@ const routes: Routes = [
 
     { path: 'feed', loadChildren: feedModule, canActivate: [AuthGuard] },
     { path: 'feed-programs', loadChildren: feedProgramsModule, canActivate: [AuthGuard] },
-    { path: 'feed-Calendars', loadChildren: feedCalendarsModule, canActivate: [AuthGuard] },
+    { path: 'feed-calendars', loadChildren: feedCalendarsModule, canActivate: [AuthGuard] },
 
     { path: 'fit', loadChildren: fitModule, canActivate: [AuthGuard] },
 
