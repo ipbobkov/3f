@@ -16,6 +16,8 @@ const feedProgramsModule = () => import('./feed-programs/feed-programs.module').
 const feedCalendarsModule = () => import('./feed-calendars/feed-calendars.module').then(x => x.FeedCalendarsModule);
 
 const fitModule = () => import('./fit/fit.module').then(x => x.FitModule);
+// const fitProgramsModule = () => import('./fit-programs/fit-programs.module').then(x => x.FitProgramsModule);
+const fitCalendarsModule = () => import('./fit-calendars/fit-calendars.module').then(x => x.FitCalendarsModule);
 
 const routes: Routes = [
     { path: '', component: HomeComponent, canActivate: [AuthGuard] },
@@ -31,6 +33,8 @@ const routes: Routes = [
     { path: 'feed-calendars', loadChildren: feedCalendarsModule, canActivate: [AuthGuard] },
 
     { path: 'fit', loadChildren: fitModule, canActivate: [AuthGuard] },
+    // { path: 'fit-programs', loadChildren: fitProgramsModule, canActivate: [AuthGuard] },
+    { path: 'fit-calendars', loadChildren: fitCalendarsModule, canActivate: [AuthGuard] },
 
     // otherwise redirect to home
     { path: '**', redirectTo: '' }
