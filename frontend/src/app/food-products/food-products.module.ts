@@ -3,10 +3,12 @@ import { LayoutComponent } from './layout.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FoodProductsRoutingModule } from './food-products-routing.module';
+import { FilterNameComponent } from './filter-name.component';
 
 @NgModule({
   declarations: [
-    LayoutComponent
+    LayoutComponent,
+    FilterNameComponent
   ],
   imports: [
     RouterModule,
