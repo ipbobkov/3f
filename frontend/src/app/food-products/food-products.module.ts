@@ -1,3 +1,4 @@
+import { ListComponent } from './list.component';
 import { RouterModule } from '@angular/router';
 import { LayoutComponent } from './layout.component';
 import { NgModule } from '@angular/core';
@@ -8,6 +9,7 @@ import { FilterNameComponent } from './filter-name.component';
 @NgModule({
   declarations: [
     LayoutComponent,
+    ListComponent,
     FilterNameComponent
   ],
   imports: [

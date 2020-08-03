@@ -9,7 +9,10 @@ const usersModule = () => import('./users/users.module').then(x => x.UsersModule
 
 const foodModule = () => import('./food/food.module').then(x => x.FoodModule);
 const foodProductsModule = () => import('./food-products/food-products.module').then(x => x.FoodProductsModule);
+const foodProductModule = () => import('./food-product/food-product.module').then(x => x.FoodProductModule);
 const foodRecipesModule = () => import('./food-recipes/food-recipes.module').then(x => x.FoodRecipesModule);
+// const foodRecipeModule = () => import('./food-recipe/food-recipe.module').then(x => x.FoodRecipeModule);
+
 
 const feedModule = () => import('./feed/feed.module').then(x => x.FeedModule);
 const feedProgramsModule = () => import('./feed-programs/feed-programs.module').then(x => x.FeedProgramsModule);
@@ -26,7 +29,9 @@ const routes: Routes = [
 
     { path: 'food', loadChildren: foodModule, canActivate: [AuthGuard] },
     { path: 'food-products', loadChildren: foodProductsModule, canActivate: [AuthGuard] },
+    { path: 'food-product', loadChildren: foodProductModule, canActivate: [AuthGuard] },
     { path: 'food-recipes', loadChildren: foodRecipesModule, canActivate: [AuthGuard] },
+    // { path: 'food-recipe', loadChildren: foodRecipeModule, canActivate: [AuthGuard] },
 
     { path: 'feed', loadChildren: feedModule, canActivate: [AuthGuard] },
     { path: 'feed-programs', loadChildren: feedProgramsModule, canActivate: [AuthGuard] },
