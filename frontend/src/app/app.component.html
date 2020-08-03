@@ -1,5 +1,5 @@
 ﻿<!-- nav USER TOP-->
-<nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light" *ngIf="user">
+<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark" *ngIf="user">
   <a class="navbar-brand" href="#">Navbar</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarUserTopSupportedContent" aria-controls="navbarUserTopSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -7,34 +7,34 @@
   <div class="collapse navbar-collapse" id="navbarUserTopSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" routerLinkActive="active" id="foodDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="nav-link dropdown-toggle" id="foodDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Food
         </a>
         <div class="dropdown-menu" aria-labelledby="foodDropdown">
-          <a class="dropdown-item" routerLink="food-products" routerLinkActive="active">Product catalog</a>
-          <a class="dropdown-item" routerLink="food-recipes">Recipies library</a>
+          <li class="active"><a class="dropdown-item" routerLink="food-products" routerLinkActive="active" data-toggle="collapse" data-target=".navbar-collapse.show">Product catalog</a></li>
+          <a class="dropdown-item" routerLink="food-recipes" routerLinkActive="active" data-toggle="collapse" data-target=".navbar-collapse.show">Recipies library</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">Something else here</a>
         </div>
       </li>
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" routerLink="/" routerLinkActive="active" id="feedDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="nav-link dropdown-toggle" id="feedDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Feed
         </a>
         <div class="dropdown-menu" aria-labelledby="feedDropdown">
-          <a class="dropdown-item" routerLink="feed-programs">Nutrition programs</a>
-          <a class="dropdown-item" routerLink="feed-calendars">Feeding calendars</a>
+          <a class="dropdown-item" routerLink="feed-programs" routerLinkActive="active" data-toggle="collapse" data-target=".navbar-collapse.show">Nutrition programs</a>
+          <a class="dropdown-item" routerLink="feed-calendars" routerLinkActive="active" data-toggle="collapse" data-target=".navbar-collapse.show">Feeding calendars</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">Something else here</a>
         </div>
       </li>
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" routerLink="/" routerLinkActive="active" id="fitDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="nav-link dropdown-toggle" id="fitDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Fit
         </a>
         <div class="dropdown-menu" aria-labelledby="fitDropdown">
-          <a class="dropdown-item" routerLink="fit-programs">Fitness programs</a>
-          <a class="dropdown-item" routerLink="fit-calendars">Sport calendars</a>
+          <a class="dropdown-item" routerLink="fit-programs" routerLinkActive="active" data-toggle="collapse" data-target=".navbar-collapse.show">Fitness programs</a>
+          <a class="dropdown-item" routerLink="fit-calendars" routerLinkActive="active" data-toggle="collapse" data-target=".navbar-collapse.show">Sport calendars</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">Something else here</a>
         </div>
@@ -46,7 +46,7 @@
   </div>
 </nav>
 <!-- nav USER bottom -->
-<nav class="navbar fixed-bottom navbar-expand-lg navbar-light bg-light" *ngIf="user">
+<nav class="navbar fixed-bottom navbar-expand-lg navbar-dark bg-dark" *ngIf="user">
   <a class="navbar-brand" href="http://www.3f.prgtest.ru">&copy; 2020 telebob</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarUserBottomSupportedContent" aria-controls="navbarUserBottomSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
