@@ -5,12 +5,14 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FoodProductsRoutingModule } from './food-products-routing.module';
 import { FilterNameComponent } from './filter-name.component';
+import { FilterModalComponent } from './filter-modal.component';
 
 @NgModule({
   declarations: [
     LayoutComponent,
     ListComponent,
-    FilterNameComponent
+    FilterNameComponent,
+    FilterModalComponent
   ],
   imports: [
     RouterModule,
