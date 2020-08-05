@@ -5,13 +5,13 @@ import { AccountService } from '@app/_services';
 
 @Component({ templateUrl: 'list.component.html' })
 export class ListComponent implements OnInit {
-    users = null;
+    products = null;
 
-    constructor(private accountService: AccountService) {}
+    constructor(private foodProductsService: AccountService) {}
 
     ngOnInit() {
-        this.accountService.getAll()
+        this.foodProductsService.getAll()
             .pipe(first())
-            .subscribe(users => this.users = users);
+            .subscribe(products => this.products = products);
     }
 }

@@ -1,4 +1,4 @@
-﻿import { Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
@@ -8,7 +8,7 @@ import { environment } from '@environments/environment';
 import { User } from '@app/_models';
 
 @Injectable({ providedIn: 'root' })
-export class AccountService {
+export class FoodProductsService {
     private userSubject: BehaviorSubject<User>;
     public user: Observable<User>;
 
@@ -23,6 +23,9 @@ export class AccountService {
     public get userValue(): User {
         return this.userSubject.value;
     }
+
+
+
 
     login(username, password) {
         return this.http.post<User>(`${environment.apiUrl}/users/authenticate`, { username, password })
