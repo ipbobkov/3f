@@ -1,3 +1,4 @@
+import { FoodProductsService } from './food-products.service';
 import { Component, OnInit } from '@angular/core';
 import { first } from 'rxjs/operators';
 
@@ -7,11 +8,22 @@ import { AccountService } from '@app/_services';
 export class ListComponent implements OnInit {
     products = null;
 
-    constructor(private foodProductsService: AccountService) {}
+    constructor(private productsService: FoodProductsService) {}
 
     ngOnInit() {
-        this.foodProductsService.getAll()
+        this.productsService.getAll()
             .pipe(first())
-            .subscribe(products => this.products = products);
+            .subscribe(users => this.products = this.products);
     }
+/*
+    deleteUser(id: string) {
+        const user = this.products.find(x => x.id === id);
+        user.isDeleting = true;
+        this.productsService.delete(id)
+            .pipe(first())
+            .subscribe(() => {
+                this.products = this.products.filter(x => x.id !== id);
+            });
+    }>
+*/
 }

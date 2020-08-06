@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
 })
 
 export class FilterNameComponent {
-  test: '1231233';
+  filterStr = 'filter string';
+
+  // Change filter
+  change(): void {
+    this.filterStr = '';
+  }
 }
