@@ -1,1 +1,62 @@
-<h2>Add-edit works...</h2>
+<h1 *ngIf="isAddMode">Add Product</h1>
+<h1 *ngIf="!isAddMode">Edit Product</h1>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-row">
+        <div class="form-group col">
+            <label for="name">Product Name</label>
+            <input type="text" formControlName="name" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />
+            <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                <div *ngIf="f.name.errors.required">Product Name is required</div>
+            </div>
+        </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col">
+          <label for="comment">Comment</label>
+          <textarea type="text" formControlName="comment" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.comment.errors }"></textarea>
+          <div *ngIf="submitted && f.comment.errors" class="invalid-feedback">
+              <div *ngIf="f.comment.errors.required">Comment is required</div>
+          </div>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col">
+          <label for="icon">Icon</label>
+          <input type="text" formControlName="icon" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.icon.errors }">
+          <div *ngIf="submitted && f.icon.errors" class="invalid-feedback">
+              <div *ngIf="f.icon.errors.required">Icon is required</div>
+          </div>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col">
+        <label for="proteine">Proteine</label>
+        <input type="text" formControlName="proteine" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.proteine.errors }" />
+        <div *ngIf="submitted && f.proteine.errors" class="invalid-feedback">
+            <div *ngIf="f.proteine.errors.required">Required</div>
+        </div>
+      </div>
+      <div class="form-group col">
+        <label for="fat">Fat</label>
+        <input type="text" formControlName="fat" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.fat.errors }" />
+        <div *ngIf="submitted && f.fat.errors" class="invalid-feedback">
+            <div *ngIf="f.fat.errors.required">Required</div>
+        </div>
+      </div>
+      <div class="form-group col">
+        <label for="carbohydrate">Carbohydrate</label>
+        <input type="text" formControlName="carbohydrate" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.carbohydrate.errors }" />
+        <div *ngIf="submitted && f.carbohydrate.errors" class="invalid-feedback">
+            <div *ngIf="f.carbohydrate.errors.required">Required</div>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <div class="form-group">
+        <button [disabled]="loading" class="btn btn-primary">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+            Save
+        </button>
+        <a routerLink="/food-products" class="btn btn-link">Cancel</a>
+    </div>
+</form>

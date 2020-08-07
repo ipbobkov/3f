@@ -3,7 +3,7 @@ export class Product {
   name: string;
   icon: string;
   comment: string;
-  protein: string;
+  proteine: string;
   fat: string;
   carbohydrate: string;
   nutrients: {};

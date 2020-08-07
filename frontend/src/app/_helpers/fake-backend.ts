@@ -5,6 +5,7 @@ import { delay, mergeMap, materialize, dematerialize } from 'rxjs/operators';
 
 // array in local storage for registered users
 let users = JSON.parse(localStorage.getItem('users')) || [];
+let products = JSON.parse(localStorage.getItem('products')) || [];
 
 @Injectable()
 export class FakeBackendInterceptor implements HttpInterceptor {
@@ -14,7 +15,9 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         // wrap in delayed observable to simulate server api call
         return of(null)
             .pipe(mergeMap(handleRoute))
-            .pipe(materialize()) // call materialize and dematerialize to ensure delay even if an error is thrown (https://github.com/Reactive-Extensions/RxJS/issues/648)
+            // tslint:disable-next-line: max-line-length
+            // call materialize and dematerialize to ensure delay even if an error is thrown (https://github.com/Reactive-Extensions/RxJS/issues/648)
+            .pipe(materialize())
             .pipe(delay(500))
             .pipe(dematerialize());
 
@@ -32,32 +35,98 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                     return updateUser();
                 case url.match(/\/users\/\d+$/) && method === 'DELETE':
                     return deleteUser();
+
+                case url.endsWith('/food-product/add') && method === 'POST':
+                    return addProduct();
+                case url.endsWith('/food-products') && method === 'GET':
+                    return getProducts();
+                case url.match(/\/food-products\/\d+$/) && method === 'GET':
+                    return getProductById();
+                case url.match(/\/food-products\/\d+$/) && method === 'PUT':
+                    return updateProduct();
+                case url.match(/\/food-products\/\d+$/) && method === 'DELETE':
+                    return deleteProduct();
+
                 default:
                     // pass through any requests not handled above
                     return next.handle(request);
-            }    
+            }
         }
 
         // route functions
 
+
+        function addProduct() {
+          const product = body;
+
+          if (products.find(x => x.productname === product.productname)) {
+              return error('productname "' + product.productname + '" is already taken');
+          }
+
+          product.id = products.length ? Math.max(...products.map(x => x.id)) + 1 : 1;
+          products.push(product);
+          localStorage.setItem('products', JSON.stringify(products));
+          return ok();
+        }
+
+        function getProducts() {
+          if (!isLoggedIn()) { return unauthorized(); }
+          return ok(products);
+        }
+
+        function getProductById() {
+          if (!isLoggedIn()) { return unauthorized(); }
+
+          const product = products.find(x => x.id === idFromUrl());
+          return ok(product);
+      }
+
+        function updateProduct() {
+          if (!isLoggedIn()) { return unauthorized(); }
+
+          const params = body;
+          const product = products.find(x => x.id === idFromUrl());
+
+          // only update password if entered
+          if (!params.password) {
+              delete params.password;
+          }
+
+          // update and save product
+          Object.assign(product, params);
+          localStorage.setItem('products', JSON.stringify(products));
+
+          return ok();
+      }
+
+        function deleteProduct() {
+          if (!isLoggedIn()) { return unauthorized(); }
+
+          products = products.filter(x => x.id !== idFromUrl());
+          localStorage.setItem('products', JSON.stringify(products));
+          return ok();
+      }
+
+
+        // ====================================================================================
         function authenticate() {
             const { username, password } = body;
             const user = users.find(x => x.username === username && x.password === password);
-            if (!user) return error('Username or password is incorrect');
+            if (!user) { return error('Username or password is incorrect'); }
             return ok({
                 id: user.id,
                 username: user.username,
                 firstName: user.firstName,
                 lastName: user.lastName,
                 token: 'fake-jwt-token'
-            })
+            });
         }
 
         function register() {
-            const user = body
+            const user = body;
 
             if (users.find(x => x.username === user.username)) {
-                return error('Username "' + user.username + '" is already taken')
+                return error('Username "' + user.username + '" is already taken');
             }
 
             user.id = users.length ? Math.max(...users.map(x => x.id)) + 1 : 1;
@@ -67,22 +136,22 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         }
 
         function getUsers() {
-            if (!isLoggedIn()) return unauthorized();
+            if (!isLoggedIn()) { return unauthorized(); }
             return ok(users);
         }
 
         function getUserById() {
-            if (!isLoggedIn()) return unauthorized();
+            if (!isLoggedIn()) { return unauthorized(); }
 
             const user = users.find(x => x.id === idFromUrl());
             return ok(user);
         }
 
         function updateUser() {
-            if (!isLoggedIn()) return unauthorized();
+            if (!isLoggedIn()) { return unauthorized(); }
 
-            let params = body;
-            let user = users.find(x => x.id === idFromUrl());
+            const params = body;
+            const user = users.find(x => x.id === idFromUrl());
 
             // only update password if entered
             if (!params.password) {
@@ -97,7 +166,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         }
 
         function deleteUser() {
-            if (!isLoggedIn()) return unauthorized();
+            if (!isLoggedIn()) { return unauthorized(); }
 
             users = users.filter(x => x.id !== idFromUrl());
             localStorage.setItem('users', JSON.stringify(users));
@@ -107,7 +176,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         // helper functions
 
         function ok(body?) {
-            return of(new HttpResponse({ status: 200, body }))
+            return of(new HttpResponse({ status: 200, body }));
         }
 
         function error(message) {

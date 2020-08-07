@@ -11,7 +11,7 @@ export class FoodProductsService {
 
   getAll(filterStr= '') {
     if (filterStr) { filterStr = '/' + filterStr; }
-    return this.http.get<Product[]>(`${environment.apiUrl}/products` + filterStr);
+    return this.http.get<Product[]>(`${environment.apiUrl}/food-products` + filterStr);
   }
     /*
     login(username, password) {
