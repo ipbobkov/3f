@@ -23,6 +23,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 
         function handleRoute() {
             switch (true) {
+              // Users
                 case url.endsWith('/users/authenticate') && method === 'POST':
                     return authenticate();
                 case url.endsWith('/users/register') && method === 'POST':
@@ -36,15 +37,17 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 case url.match(/\/users\/\d+$/) && method === 'DELETE':
                     return deleteUser();
 
+              // Products
+                case url.endsWith('/food-products/list') && method === 'GET':
+                    return getProducts();
+              // Product
                 case url.endsWith('/food-product/add') && method === 'POST':
                     return addProduct();
-                case url.endsWith('/food-products') && method === 'GET':
-                    return getProducts();
-                case url.match(/\/food-products\/\d+$/) && method === 'GET':
+                case url.match(/\/food-product\/\d+$/) && method === 'GET':
                     return getProductById();
-                case url.match(/\/food-products\/\d+$/) && method === 'PUT':
+                case url.match(/\/food-product\/\d+$/) && method === 'PUT':
                     return updateProduct();
-                case url.match(/\/food-products\/\d+$/) && method === 'DELETE':
+                case url.match(/\/food-product\/\d+$/) && method === 'DELETE':
                     return deleteProduct();
 
                 default:
@@ -59,8 +62,8 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         function addProduct() {
           const product = body;
 
-          if (products.find(x => x.productname === product.productname)) {
-              return error('productname "' + product.productname + '" is already taken');
+          if (products.find(x => x.name === product.name)) {
+              return error('Productname "' + product.name + '" is already taken');
           }
 
           product.id = products.length ? Math.max(...products.map(x => x.id)) + 1 : 1;
@@ -70,12 +73,14 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         }
 
         function getProducts() {
-          if (!isLoggedIn()) { return unauthorized(); }
+          // if (!isLoggedIn()) { return unauthorized(); }
+          console.log('getUsers' + users);
+          console.log('getProducts' + products);
           return ok(products);
         }
 
         function getProductById() {
-          if (!isLoggedIn()) { return unauthorized(); }
+          // if (!isLoggedIn()) { return unauthorized(); }
 
           const product = products.find(x => x.id === idFromUrl());
           return ok(product);
@@ -193,7 +198,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 
         function idFromUrl() {
             const urlParts = url.split('/');
-            return parseInt(urlParts[urlParts.length - 1]);
+            return parseInt(urlParts[urlParts.length - 1], 10);
         }
     }
 }

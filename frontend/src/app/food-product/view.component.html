@@ -3,16 +3,16 @@
     <div class="card mt-3">
       <div class="row no-gutters">
         <div class="col-md-4">
-          <a routerLink="/food-product/view/1" routerLinkActive="active">
-            <img src="assets/scale_2400.webp" class="card-img" alt="No picture ((">
+          <a routerLink="/food-product/edit/{{product.id}}" routerLinkActive="active">
+            <img src="{{product.icon}}" class="card-img" alt="No picture ((">
           </a>
         </div>
         <div class="col-md-8">
           <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-            <button type="button" routerLink="/food-product/edit/1" class="btn btn-outline-success m-3">Edit</button>
+            <h5 class="card-title">{{product.name}}</h5>
+            <p class="card-text">{{product.comment}}</p>
+            <p class="card-text"><small class="text-muted"><strong>Prt:</strong>{{product.proteine}}&nbsp;<strong>Fat:</strong>{{product.fat}}&nbsp;<strong>CH:</strong>{{product.carbohydrate}}</small></p>
+            <button type="button" routerLink="/food-product/edit/{{product.id}}" class="btn btn-outline-success m-3">Edit</button>
             <button type="button" routerLink="/food-products" class="btn btn-outline-danger m-3">Close</button>
           </div>
         </div>

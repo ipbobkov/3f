@@ -1,18 +1,18 @@
-<a routerLink="/food-product/add" class="btn btn-sm btn-success mb-2">Add Product</a>
+<a routerLink="/food-product" class="btn btn-sm btn-success mb-2">Add Product</a>
 <div class="row">
   <div class="col-sm-6">
     <div *ngFor="let product of products" class="card mb-3" style="max-width: 540px;">
       <div class="row no-gutters">
         <div class="col-md-4">
-          <a routerLink="/food-product/view/1" routerLinkActive="active">
+          <a routerLink="/food-product/{{product.id}}" routerLinkActive="active">
             <img src="{{product.icon}}" class="card-img" alt="{{product.name}}">
           </a>
         </div>
         <div class="col-md-8">
           <div class="card-body">
             <h5 class="card-title">{{product.name}}</h5>
-            <p class="card-text">{{product.text}}</p>
-            <p class="card-text"><small class="text-muted">{{product.comment}}</small></p>
+            <p class="card-text">{{product.comment}}</p>
+            <p class="card-text"><small class="text-muted"><strong>Prt:</strong>{{product.proteine}}&nbsp;<strong>Fat:</strong>{{product.fat}}&nbsp;<strong>CH:</strong>{{product.carbohydrate}}</small></p>
           </div>
         </div>
       </div>

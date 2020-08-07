@@ -1,3 +1,4 @@
+import { Product } from './../_models/product';
 
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -11,9 +12,11 @@ import { AlertService } from '@app/_services';
 export class AddEditComponent implements OnInit {
     form: FormGroup;
     id: string;
+    icon: string;
     isAddMode: boolean;
     loading = false;
     submitted = false;
+    product: Product;
 
     constructor(
         private formBuilder: FormBuilder,
@@ -49,6 +52,7 @@ export class AddEditComponent implements OnInit {
                     this.f.fat.setValue(x.fat);
                     this.f.carbohydrate.setValue(x.carbohydrate);
                 });
+            this.icon = this.f.icon.value;
         }
     }
 
@@ -99,11 +103,17 @@ export class AddEditComponent implements OnInit {
           .subscribe(
               data => {
                   this.alertService.success('Update successful', { keepAfterRouteChange: true });
-                  this.router.navigate(['..', { relativeTo: this.route }]);
+                  console.log('Navigate to: "../' + this.id + '"');
+                  this.router.navigate(['./' + this.id, { relativeTo: this.route }]);
               },
               error => {
                   this.alertService.error(error);
                   this.loading = false;
               });
+  }
+
+  // Change filter
+  changeIcon(str: string): void {
+    this.icon = str;
   }
 }

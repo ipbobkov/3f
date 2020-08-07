@@ -10,8 +10,11 @@ export class FoodProductsService {
   constructor(private router: Router, private http: HttpClient) {}
 
   getAll(filterStr= '') {
+    console.log('getAll');
     if (filterStr) { filterStr = '/' + filterStr; }
-    return this.http.get<Product[]>(`${environment.apiUrl}/food-products` + filterStr);
+    const a = this.http.get<Product[]>(`${environment.apiUrl}/food-products/list` + filterStr);
+    console.log('a: ' + a);
+    return a;
   }
     /*
     login(username, password) {

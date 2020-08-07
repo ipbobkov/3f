@@ -1,6 +1,11 @@
 <h1 *ngIf="isAddMode">Add Product</h1>
 <h1 *ngIf="!isAddMode">Edit Product</h1>
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="form-row">
+    <div class="form-group col">
+        <img src="{{icon}}">
+    </div>
+</div>
     <div class="form-row">
         <div class="form-group col">
             <label for="name">Product Name</label>
@@ -22,7 +27,7 @@
     <div class="form-row">
       <div class="form-group col">
           <label for="icon">Icon</label>
-          <input type="text" formControlName="icon" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.icon.errors }">
+          <input type="text" formControlName="icon" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.icon.errors }" value="{{icon}}" (keypress)="this.changeIcon(f.icon.value)">
           <div *ngIf="submitted && f.icon.errors" class="invalid-feedback">
               <div *ngIf="f.icon.errors.required">Icon is required</div>
           </div>
