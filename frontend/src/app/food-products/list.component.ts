@@ -15,15 +15,12 @@ export class ListComponent implements OnInit {
             .subscribe(products => this.products = products);
     }
 
-/*
-    deleteUser(id: string) {
-        const user = this.products.find(x => x.id === id);
-        user.isDeleting = true;
-        this.productsService.delete(id)
-            .pipe(first())
-            .subscribe(() => {
-                this.products = this.products.filter(x => x.id !== id);
-            });
-    }>
-*/
+    deleteProduct(id: string) {
+      const product = this.products.find(x => x.id === id);
+      this.foodProductsService.deleteProduct(id)
+          .pipe(first())
+          .subscribe(() => {
+              this.products = this.products.filter(x => x.id !== id);
+          });
+  }
 }

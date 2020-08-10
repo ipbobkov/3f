@@ -12,8 +12,9 @@
             <h5 class="card-title">{{product.name}}</h5>
             <p class="card-text">{{product.comment}}</p>
             <p class="card-text"><small class="text-muted"><strong>Prt:</strong>{{product.proteine}}&nbsp;<strong>Fat:</strong>{{product.fat}}&nbsp;<strong>CH:</strong>{{product.carbohydrate}}</small></p>
-            <button type="button" routerLink="/food-product/edit/{{product.id}}" class="btn btn-outline-success m-3">Edit</button>
-            <button type="button" routerLink="/food-products" class="btn btn-outline-danger m-3">Close</button>
+            <button type="button" routerLink="/food-product/edit/{{product.id}}" class="btn btn-outline-warning m-2">Edit</button>
+            <button type="button" routerLink="/food-products" class="btn btn-outline-success m-2">Close</button>
+            <button type="button" onkeyup="deleteProduct(product.id)" class="btn btn-outline-danger m-2">Delete</button>
           </div>
         </div>
       </div>

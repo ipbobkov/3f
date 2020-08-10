@@ -8,7 +8,8 @@ const routes: Routes = [
     {
         path: '', component: LayoutComponent,
         children: [
-          { path: '', component: ListComponent}
+          { path: '', component: ListComponent},
+          { path: 'del/:id', component: ListComponent }
         ]
     }
 ];

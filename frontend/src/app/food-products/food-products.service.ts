@@ -16,6 +16,18 @@ export class FoodProductsService {
     console.log('a: ' + a);
     return a;
   }
+
+  deleteProduct(id: string) {
+    return this.http.delete(`${environment.apiUrl}/product/${id}`)
+        .pipe(map(x => {
+          /*
+          if (id === this.product.id) {
+                this.logout();
+            }
+          */
+            return x;
+        }));
+}
     /*
     login(username, password) {
         return this.http.post<User>(`${environment.apiUrl}/users/authenticate`, { username, password })

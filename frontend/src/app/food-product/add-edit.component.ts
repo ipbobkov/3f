@@ -51,8 +51,9 @@ export class AddEditComponent implements OnInit {
                     this.f.proteine.setValue(x.proteine);
                     this.f.fat.setValue(x.fat);
                     this.f.carbohydrate.setValue(x.carbohydrate);
+
+                    this.icon = x.icon;
                 });
-            this.icon = this.f.icon.value;
         }
     }
 
@@ -103,8 +104,8 @@ export class AddEditComponent implements OnInit {
           .subscribe(
               data => {
                   this.alertService.success('Update successful', { keepAfterRouteChange: true });
-                  console.log('Navigate to: "../' + this.id + '"');
-                  this.router.navigate(['./' + this.id, { relativeTo: this.route }]);
+                  console.log('Navigate to: "./' + this.id + '"');
+                  this.router.navigate(['/food-product/' + this.id, { relativeTo: this.route }]);
               },
               error => {
                   this.alertService.error(error);

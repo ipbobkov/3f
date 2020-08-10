@@ -32,16 +32,15 @@ export class FoodProductService {
             }));
     }
 
-    /*
     delete(id: string) {
-        return this.http.delete(`${environment.apiUrl}/product/${id}`)
-            .pipe(map(x => {
-                // auto logout if the logged in user deleted their own record
-                if (id === this.product.id) {
-                    this.logout();
-                }
-                return x;
-            }));
+      return this.http.delete(`${environment.apiUrl}/product/${id}`)
+          .pipe(map(x => {
+            /*
+            if (id === this.product.id) {
+                  this.logout();
+              }
+            */
+              return x;
+          }));
     }
-   */
 }
