@@ -2,7 +2,7 @@
 <div class="card-columns">
   <div class="card" *ngFor="let product of products" class="card mb-3" style="max-width: 540px;">
     <a routerLink="/food-product/{{product.id}}">
-        <img src="{{product.icon}}" class="card-img" alt="{{product.name}}">
+    <img src="{{product.icon}}" onerror="this.src='https://thumbs.dreamstime.com/b/no-image-available-icon-photo-camera-flat-vector-illustration-132483141.jpg'" alt=""  class="card-img">
     </a>
     <div>
       <div class="card-body">

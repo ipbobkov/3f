@@ -115,9 +115,4 @@ export class AddEditComponent implements OnInit {
                   this.loading = false;
               });
   }
-
-  // Change filter
-  changeIcon(str: string): void {
-    this.icon = str;
-  }
 }
