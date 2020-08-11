@@ -13,7 +13,7 @@ export class FoodProductService {
   constructor(private router: Router, private http: HttpClient) {}
 
     add(product: Product) {
-      console.warn(product);
+      // console.warn(product);
       return this.http.post(`${environment.apiUrl}/food-product/add`, product);
     }
 
@@ -22,7 +22,7 @@ export class FoodProductService {
     }
 
     update(id, params) {
-      console.warn(params);
+      // console.warn(params);
       return this.http.put(`${environment.apiUrl}/food-product/${id}`, params)
             .pipe(map(x => {
                     // update local storage
@@ -33,7 +33,7 @@ export class FoodProductService {
     }
 
     delete(id: string) {
-      return this.http.delete(`${environment.apiUrl}/product/${id}`)
+      return this.http.delete(`${environment.apiUrl}/food-product/${id}`)
           .pipe(map(x => {
             /*
             if (id === this.product.id) {

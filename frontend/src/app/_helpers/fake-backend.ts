@@ -38,8 +38,9 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                     return deleteUser();
 
               // Products
-                case url.endsWith('/food-products/list') && method === 'GET':
+                case url.endsWith('/food-products') && method === 'GET':
                     return getProducts();
+
               // Product
                 case url.endsWith('/food-product/add') && method === 'POST':
                     return addProduct();
@@ -73,14 +74,14 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         }
 
         function getProducts() {
-          // if (!isLoggedIn()) { return unauthorized(); }
-          console.log('getUsers' + users);
-          console.log('getProducts' + products);
+          if (!isLoggedIn()) { return unauthorized(); }
+          // console.log('getUsers' + users);
+          // console.log('getProducts' + products);
           return ok(products);
         }
 
         function getProductById() {
-          // if (!isLoggedIn()) { return unauthorized(); }
+          if (!isLoggedIn()) { return unauthorized(); }
 
           const product = products.find(x => x.id === idFromUrl());
           return ok(product);

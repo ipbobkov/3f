@@ -70,7 +70,8 @@
                 <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
                 Save
               </button>
-              <a routerLink="/food-product/{{id}}" class="btn btn-link">Cancel</a>
+              <a *ngIf="id" routerLink="/food-product/{{id}}" class="btn btn-link">Cancel</a>
+              <a *ngIf="!id" routerLink="/food-products" class="btn btn-link">Cancel</a>
           </div>
           </div>
         </div>

@@ -33,10 +33,13 @@ export class ViewComponent implements OnInit {
   }
 
   deleteProduct(id: string) {
-    console.log('ViewComponent/deleteProduct(id: ' + id + ')');
+    // console.log('ViewComponent/deleteProduct(id: ' + id + ')');
     const product = this;
     this.foodProductService.delete(id)
         .pipe(first())
         .subscribe(() => {});
+    this.alertService.warn('Product was deleted successfully', { keepAfterRouteChange: true });
+    // console.log('Navigate to: "/food-products"');
+    this.router.navigate(['/food-products', { relativeTo: this.route }]);
   }
 }

@@ -5,6 +5,6 @@ import { Injectable } from '@angular/core';
 })
 export class LogService {
   log(str = ''){
-    console.log(str);
+    // console.log(str);
   }
 }

@@ -7,6 +7,7 @@ import { first } from 'rxjs/operators';
 
 import { FoodProductService } from './food-product.service';
 import { AlertService } from '@app/_services';
+import { isDefined } from '@angular/compiler/src/util';
 
 @Component({ templateUrl: 'add-edit.component.html' })
 export class AddEditComponent implements OnInit {
@@ -61,7 +62,7 @@ export class AddEditComponent implements OnInit {
     get f() { return this.form.controls; }
 
     onSubmit() {
-      console.log('onSubmit');
+      // console.log('onSubmit');
       this.submitted = true;
 
         // reset alerts on submit
@@ -70,11 +71,12 @@ export class AddEditComponent implements OnInit {
         // stop here if form is invalid
       if (this.form.invalid) {
         this.alertService.error('Form is invalid!', { keepAfterRouteChange: true });
-        console.log('if (this.form.invalid)');
+        // console.log('if (this.form.invalid)');
         return;
       }
 
       this.loading = true;
+      // console.log('AddEditComponent/loading');
       if (this.isAddMode) {
             this.addProduct();
         } else {
@@ -83,13 +85,14 @@ export class AddEditComponent implements OnInit {
     }
 
     private addProduct() {
-      console.log('addProduct');
+      // console.log('AddEditComponent/addProduct');
       this.foodProductService.add(this.form.value)
             .pipe(first())
             .subscribe(
                 data => {
                     this.alertService.success('Product added successfully', { keepAfterRouteChange: true });
-                    this.router.navigate(['..', { relativeTo: this.route }]);
+                    this.router.navigate(['/food-products']);
+                    this.loading = false;
                 },
                 error => {
                     this.alertService.error(error);
@@ -98,13 +101,13 @@ export class AddEditComponent implements OnInit {
     }
 
     private updateProduct() {
-      console.log('updateProduct');
+      // console.log('AddEditComponent/updateProduct');
       this.foodProductService.update(this.id, this.form.value)
           .pipe(first())
           .subscribe(
               data => {
                   this.alertService.success('Update successful', { keepAfterRouteChange: true });
-                  console.log('Navigate to: "./' + this.id + '"');
+                  // console.log('Navigate to: "./' + this.id + '"');
                   this.router.navigate(['/food-product/' + this.id, { relativeTo: this.route }]);
               },
               error => {

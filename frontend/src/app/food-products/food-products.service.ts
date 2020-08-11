@@ -10,10 +10,10 @@ export class FoodProductsService {
   constructor(private router: Router, private http: HttpClient) {}
 
   getAll(filterStr= '') {
-    console.log('getAll');
+    // console.log('getAll');
     if (filterStr) { filterStr = '/' + filterStr; }
-    const a = this.http.get<Product[]>(`${environment.apiUrl}/food-products/list` + filterStr);
-    console.log('a: ' + a);
+    const a = this.http.get<Product[]>(`${environment.apiUrl}/food-products` + filterStr);
+    // console.log('a: ' + a);
     return a;
   }
 
