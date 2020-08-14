@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { first } from 'rxjs/operators';
 
-import { AccountService } from '@app/_services';
+import { FoodRecipesService } from './food-recipes.service';
 
 @Component({ templateUrl: 'list.component.html' })
 export class ListComponent implements OnInit {
-    users = null;
+    recipes = null;
 
-    constructor(private accountService: AccountService) {}
+    constructor(private accountService: FoodRecipesService) {}
 
     ngOnInit() {
         this.accountService.getAll()
             .pipe(first())
-            .subscribe(users => this.users = users);
+            .subscribe(recipes => this.recipes = recipes);
     }
 }

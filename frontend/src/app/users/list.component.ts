@@ -1,4 +1,5 @@
-﻿import { Component, OnInit } from '@angular/core';
+﻿import { User } from './../_models/user';
+import { Component, OnInit } from '@angular/core';
 import { first } from 'rxjs/operators';
 
 import { AccountService } from '@app/_services';
@@ -6,6 +7,8 @@ import { AccountService } from '@app/_services';
 @Component({ templateUrl: 'list.component.html' })
 export class ListComponent implements OnInit {
     users = null;
+    isDeleting = false;
+    currentUser: User = new User();
 
     constructor(private accountService: AccountService) {}
 
@@ -23,5 +26,9 @@ export class ListComponent implements OnInit {
             .subscribe(() => {
                 this.users = this.users.filter(x => x.id !== id);
             });
+    }
+
+    currentUserSet(user: User) {
+      this.currentUser = user;
     }
 }
