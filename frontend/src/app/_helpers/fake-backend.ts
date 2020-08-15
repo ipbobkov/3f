@@ -3,9 +3,10 @@ import { HttpRequest, HttpResponse, HttpHandler, HttpEvent, HttpInterceptor, HTT
 import { Observable, of, throwError } from 'rxjs';
 import { delay, mergeMap, materialize, dematerialize } from 'rxjs/operators';
 
-// array in local storage for registered users
+// array in local storage for registered creatures
 let users = JSON.parse(localStorage.getItem('users')) || [];
 let products = JSON.parse(localStorage.getItem('products')) || [];
+let recipes = JSON.parse(localStorage.getItem('recipes')) || [];
 
 @Injectable()
 export class FakeBackendInterceptor implements HttpInterceptor {
@@ -51,6 +52,10 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 case url.match(/\/food-product\/\d+$/) && method === 'DELETE':
                     return deleteProduct();
 
+              // Recipes
+                case url.endsWith('/food-recipes') && method === 'GET':
+                  return getRecipes();
+
                 default:
                     // pass through any requests not handled above
                     return next.handle(request);
@@ -59,6 +64,12 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 
         // route functions
 
+        function getRecipes() {
+          if (!isLoggedIn()) { return unauthorized(); }
+          // console.log('getRecipes' + recipes);
+          // console.log('getRecipes' + recipes);
+          return ok(recipes);
+        }
 
         function addProduct() {
           const product = body;

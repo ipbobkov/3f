@@ -1,15 +1,14 @@
-<h1>Recipes</h1>
-<a routerLink="/food-recipe" class="btn btn-sm btn-success mb-2">Add Recipe</a>
+<a routerLink="/food-item" class="btn btn-sm btn-success mb-2">Add Recipe</a>
 <div class="card-columns">
-  <div class="card" *ngFor="let recipe of recipes" class="card mb-3" style="max-width: 540px;">
-    <a routerLink="/food-recipe/{{recipe.id}}">
-    <img src="{{recipe.icon}}" onerror="this.src='https://thumbs.dreamstime.com/b/no-image-available-icon-photo-camera-flat-vector-illustration-132483141.jpg'" alt=""  class="card-img">
+  <div class="card" *ngFor="let item of items" class="card mb-3" style="max-width: 540px;">
+    <a routerLink="/food-recipe/{{item.id}}">
+    <img src="{{item.icon}}" onerror="this.src='https://thumbs.dreamstime.com/b/no-image-available-icon-photo-camera-flat-vector-illustration-132483141.jpg'" alt=""  class="card-img">
     </a>
     <div>
       <div class="card-body">
-        <h5 class="card-title">{{recipe.name}}</h5>
-        <p class="card-text">{{recipe.comment}}</p>
-        <p class="card-text"><small class="text-muted"><strong>Prt:</strong>{{recipe.proteine}}&nbsp;<strong>Fat:</strong>{{recipe.fat}}&nbsp;<strong>CH:</strong>{{recipe.carbohydrate}}</small></p>
+        <h5 class="card-title">{{item.name}}</h5>
+        <p class="card-text">{{item.comment}}</p>
+        <p class="card-text"><small class="text-muted"><strong>Prt:</strong>{{item.proteine}}&nbsp;<strong>Fat:</strong>{{item.fat}}&nbsp;<strong>CH:</strong>{{item.carbohydrate}}</small></p>
       </div>
     </div>
   </div>

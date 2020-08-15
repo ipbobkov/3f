@@ -1,0 +1,46 @@
+body{
+  background: #333;
+}
+.slider{
+  width:80%;
+  height:5px;
+  background:rgb(189, 79, 79);
+  position:relative;
+  margin-bottom:50px;
+  margin-left:20px;
+}
+.slider .bar{
+  position:absolute;
+  left:50px;
+  width:300px;
+  background:rgb(0, 4, 255);
+  height:100%;
+}
+.slider .bar .lp span{
+    position:relative;
+    left:-30px;
+}
+.slider .bar .rp span{
+    position:relative;
+    left:10px;
+}
+.slider .bar .lp,.slider .bar .rp{
+  cursor:pointer;
+  background:rgb(76, 248, 53);
+  width:16px;
+  height:16px;
+  border:3px solid blue;
+  border-radius:100%;
+  position:absolute;
+  line-height:400%;
+  color:rgb(20, 148, 199);
+  user-select:none;
+}
+.slider .bar .lp{
+  left:0px;
+  top:-8px;
+}
+.slider .bar .rp{
+  left:100%;
+  top:-8px;
+}
