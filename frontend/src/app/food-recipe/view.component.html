@@ -1,0 +1,53 @@
+
+<!-- Modal -->
+<div class="modal fade" id="confirmDeleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Confirm action</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h5>Do you really want to delete "{{recipe.name}}" from database?</h5>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-success" data-dismiss="modal">Close</button>
+        <button type="button" data-dismiss="modal" (click)="deleteRecipe(recipe.id)" class="btn btn-outline-danger m-2">
+          <span *ngIf="isDeleting" class="spinner-border spinner-border-sm">Delete</span>
+          <span *ngIf="!isDeleting">Delete</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+    <div class="card mt-3">
+      <div class="row no-gutters">
+        <div class="col-md-4">
+          <a routerLink="/food-recipe/edit/{{recipe.id}}" routerLinkActive="active">
+          <img src="{{recipe.icon}}" onerror="this.src='https://thumbs.dreamstime.com/b/no-image-available-icon-photo-camera-flat-vector-illustration-132483141.jpg'" alt=""  class="card-img">
+          </a>
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title">{{recipe.name}}</h5>
+            <p class="card-text">{{recipe.comment}}</p>
+            <p class="card-text"><small class="text-muted"><strong>Prt:</strong>{{recipe.proteine}}&nbsp;<strong>Fat:</strong>{{recipe.fat}}&nbsp;<strong>CH:</strong>{{recipe.carbohydrate}}</small></p>
+            <button type="button" routerLink="/food-recipe/edit/{{recipe.id}}" class="btn btn-outline-warning m-2">Edit</button>
+            <button type="button" routerLink="/food-recipes" class="btn btn-outline-success m-2">Close</button>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-outline-danger m-2" data-toggle="modal" data-target="#confirmDeleteModal">
+              Delete
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+<br>
