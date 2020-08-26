@@ -12,10 +12,11 @@ export class FoodProductsService {
   getAll(filterStr= '') {
     console.log('getAll');
     if (filterStr) { filterStr = '/' + filterStr; }
+    const a = this.http.get<Product[]>(`${environment.apiUrl}/food-products` + filterStr);
+
     console.log('Url: ' + `${environment.apiUrl}/food-products` + filterStr);
-    // const a = this.http.get<Product[]>(`${environment.apiUrl}/food-products` + filterStr);
-    const a = this.http.get<Product[]>(`http://localhost:8000/food-products` + filterStr);
-    // console.log('environment.apiUrl: ' + environment.apiUrl);
+    console.log('a: "' + a + '"');
+
     return a;
   }
 
