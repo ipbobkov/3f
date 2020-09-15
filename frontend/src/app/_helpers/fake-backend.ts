@@ -1,5 +1,6 @@
-﻿import { Injectable } from '@angular/core';
-import { HttpRequest, HttpResponse, HttpHandler, HttpEvent, HttpInterceptor, HTTP_INTERCEPTORS } from '@angular/common/http';
+﻿import { User } from '@app/_models';
+import { Injectable } from '@angular/core';
+import { HttpRequest, HttpResponse, HttpHandler, HttpEvent, HttpInterceptor, HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
 import { delay, mergeMap, materialize, dematerialize } from 'rxjs/operators';
 
@@ -10,6 +11,7 @@ let recipes = JSON.parse(localStorage.getItem('recipes')) || [];
 
 @Injectable()
 export class FakeBackendInterceptor implements HttpInterceptor {
+
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         const { url, method, headers, body } = request;
 
@@ -96,7 +98,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 
           const product = products.find(x => x.id === idFromUrl());
           return ok(product);
-      }
+        }
 
         function updateProduct() {
           if (!isLoggedIn()) { return unauthorized(); }

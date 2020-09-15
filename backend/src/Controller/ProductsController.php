@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 
 class ProductsController extends AbstractController
 {
@@ -95,6 +97,14 @@ class ProductsController extends AbstractController
                 'nutrients'=>array()
             )
         );
-        return $this->json($arr);
+
+
+        if(!sizeof($arr)) throw $this->createNotFoundException('The product does not exist');
+
+        // return $this->json($arr);
+
+        // return(new Response($this->json($arr), Response::HTTP_OK));
+        $response = new JsonResponse($arr);
+        return $response;
     }
 }

@@ -1,7 +1,7 @@
 import { Product } from './../_models/product';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { environment } from '@environments/environment';
 import { map } from 'rxjs/internal/operators/map';
 
@@ -11,11 +11,18 @@ export class FoodProductsService {
 
   getAll(filterStr= '') {
     console.log('getAll');
-    if (filterStr) { filterStr = '/' + filterStr; }
-    const a = this.http.get<Product[]>(`${environment.apiUrl}/food-products-con` + filterStr);
 
-    console.log('Url: ' + `${environment.apiUrl}/food-products-con` + filterStr);
-    console.log('a: "' + a + '"');
+    if (filterStr) { filterStr = '/' + filterStr; }
+
+    const addr = `${environment.apiUrl}/food-products-con` + filterStr;
+    // const addr = `http://localhost:4200/food-products`;
+
+    // const a = this.http.get<HttpResponse<Product[]>>(addr);
+    const a = this.http.get<Product[]>(addr);
+
+    console.log('Url: ' + addr);
+    console.log('JSON.stringify(a)....:');
+    console.log(JSON.stringify(a));
 
     return a;
   }
