@@ -2,7 +2,7 @@
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, first } from 'rxjs/operators';
 
 import { environment } from '@environments/environment';
 import { User } from '@app/_models';
@@ -92,15 +92,31 @@ export class AccountService {
     }
 
     getAll() {
-        return this.http.get<User[]>(`${environment.apiUrl}/users`);
+      const addr = `${environment.apiUrl}/api/users?page=1`;
+      console.log('ret = this.http.get<User[]>(' +  addr + ');');
+
+      const ret = this.http.get<User[]>(addr);
+
+      console.log('ret ....:');
+      console.log(ret);
+
+      return ret;
     }
 
     getById(id: string) {
-        return this.http.get<User>(`${environment.apiUrl}/users/${id}`);
+      const addr = `${environment.apiUrl}/api/users/${id}/`;
+      console.log('ret = this.http.get<User>(' +  addr + ');');
+
+      const ret = this.http.get<User>(addr);
+
+      console.log('ret ....:');
+      console.log(ret);
+
+      return ret;
     }
 
     update(id, params) {
-        return this.http.put(`${environment.apiUrl}/users/${id}`, params)
+        return this.http.put(`${environment.apiUrl}/api/users/${id}`, params)
             .pipe(map(x => {
                 // update stored user if the logged in user updated their own record
                 if (id === this.userValue.id) {

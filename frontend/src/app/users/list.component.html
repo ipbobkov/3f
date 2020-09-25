@@ -10,7 +10,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <h5>Do you really want to delete "{{currentUser.username}}" from database?</h5>
+        <h5>Do you really want to delete "{{currentUser.nameFirst}} ({{currentUser.nameNick}}) {{currentUser.nameLast}}" from database?</h5>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-outline-success" data-dismiss="modal">Close</button>
@@ -32,7 +32,7 @@
     </a>
     <div>
       <div class="card-body">
-        <h6 class="card-title">{{user.firstName}}&nbsp;({{user.username}})<td>&nbsp;{{user.lastName}}</h6>
+        <h6 class="card-title">{{user.nameFirst}} ({{user.nameNick}}) {{user.nameLast}}</h6>
           <button type="button" routerLink="/users/edit/{{user.id}}" class="btn btn-outline-warning m-2">Edit</button>
           <!-- Button trigger modal -->
           <button type="button" class="btn btn-outline-danger m-2" (click)="currentUserSet(user)" data-toggle="modal" data-target="#confirmDeleteModal">

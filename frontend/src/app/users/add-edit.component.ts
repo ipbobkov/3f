@@ -32,20 +32,36 @@ export class AddEditComponent implements OnInit {
         }
 
         this.form = this.formBuilder.group({
-            firstName: ['', Validators.required],
-            lastName: ['', Validators.required],
-            username: ['', Validators.required],
+            email: ['', Validators.email],
+            nameFirst: ['', Validators.required],
+            nameLast: ['', Validators.required],
+            nameNick: ['', Validators.required],
             password: ['', passwordValidators]
         });
 
         if (!this.isAddMode) {
-            this.accountService.getById(this.id)
+
+          console.log('this.id ....:');
+          console.log(this.id);
+
+          const resp = this.accountService.getById(this.id)
                 .pipe(first())
-                .subscribe(x => {
-                    this.f.firstName.setValue(x.firstName);
-                    this.f.lastName.setValue(x.lastName);
-                    this.f.username.setValue(x.username);
+                .subscribe(data => {
+
+                  console.log('data ....:');
+                  console.log(JSON.stringify(data));
+
+                  this.f.email.setValue(data.email);
+                  this.f.nameNick.setValue(data.nameNick);
+                  this.f.nameFirst.setValue(data.nameFirst);
+                  this.f.nameLast.setValue(data.nameLast);
+
+                  console.log('this.f ....:');
+                  console.log(this.f);
                 });
+
+          console.log('resp ....:');
+          console.log(resp);
         }
     }
 

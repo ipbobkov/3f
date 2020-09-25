@@ -2,11 +2,13 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
+ * @ApiResource()
  * @ORM\Entity(repositoryClass=UserRepository::class)
  */
 class User implements UserInterface
@@ -34,9 +36,36 @@ class User implements UserInterface
      */
     private $password;
 
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $parent_id;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $name_first;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $name_last;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $name_nick;
+
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function setId(?int $id): self
+    {
+        $this->id = $id;
+
+        return $this;
     }
 
     public function getEmail(): ?string
@@ -44,7 +73,7 @@ class User implements UserInterface
         return $this->email;
     }
 
-    public function setEmail(string $email): self
+    public function setEmail(?string $email): self
     {
         $this->email = $email;
 
@@ -110,5 +139,53 @@ class User implements UserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function getParentId(): ?int
+    {
+        return $this->parent_id;
+    }
+
+    public function setParentId(int $parent_id): self
+    {
+        $this->parent_id = $parent_id;
+
+        return $this;
+    }
+
+    public function getNameFirst(): string
+    {
+        return $this->name_first;
+    }
+
+    public function setNameFirst(string $name_first): self
+    {
+        $this->name_first = $name_first;
+
+        return $this;
+    }
+
+    public function getNameLast(): string
+    {
+        return $this->name_last;
+    }
+
+    public function setNameLast(string $name_last): self
+    {
+        $this->name_last = $name_last;
+
+        return $this;
+    }
+
+    public function getNameNick(): string
+    {
+        return $this->name_nick;
+    }
+
+    public function setNameNick(string $name_nick): self
+    {
+        $this->name_nick = $name_nick;
+
+        return $this;
     }
 }

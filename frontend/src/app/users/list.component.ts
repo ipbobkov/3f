@@ -13,9 +13,21 @@ export class ListComponent implements OnInit {
     constructor(private accountService: AccountService) {}
 
     ngOnInit() {
-        this.accountService.getAll()
+        const resp = this.accountService.getAll()
             .pipe(first())
-            .subscribe(users => this.users = users);
+            .subscribe(data => {
+
+              console.log('data ....:');
+              console.log(JSON.stringify(data));
+
+              this.users = data['hydra:member'];
+
+              console.log('data[\'hydra:member\'] ....:');
+              console.log(JSON.stringify(data['hydra:member']));
+            });
+
+        console.log('resp ....:');
+        console.log(resp);
     }
 
     deleteUser(id: string) {

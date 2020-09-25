@@ -13,3 +13,10 @@ nelmio_cors:
             allow_headers: ['X-Custom-Auth','Content-Type','X-Requested-With','Accept','Origin','Access-Control-Request-Method','Access-Control-Request-Headers','Authorization']
             allow_methods: ['GET', 'OPTIONS', 'POST', 'PUT', 'PATCH', 'DELETE']
             max_age: 3600
+
+        # '^/api/users/26': 
+        #     origin_regex: true
+        #     allow_origin: ['*']
+        #     allow_headers: ['X-Custom-Auth','Content-Type','X-Requested-With','Accept','Origin','Access-Control-Request-Method','Access-Control-Request-Headers','Authorization']
+        #     allow_methods: ['GET', 'OPTIONS', 'POST', 'PUT', 'PATCH', 'DELETE']
+        #     max_age: 3600
