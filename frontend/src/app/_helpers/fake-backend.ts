@@ -15,6 +15,9 @@ export class FakeBackendInterceptor implements HttpInterceptor {
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         const { url, method, headers, body } = request;
 
+        console.log('request ....:');
+        console.log(request);
+
         // wrap in delayed observable to simulate server api call
         return of(null)
             .pipe(mergeMap(handleRoute))
@@ -27,35 +30,36 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         function handleRoute() {
             switch (true) {
               // Users
-                case url.endsWith('/users/authenticate') && method === 'POST':
+              // Added "/123123" to get rid of working fake backend
+                case url.endsWith('/users/authenticate/123123') && method === 'POST':
                     return authenticate();
-                case url.endsWith('/users/register') && method === 'POST':
+                case url.endsWith('/users/register/123123') && method === 'POST':
                     return register();
-                case url.endsWith('/users') && method === 'GET':
+                case url.endsWith('/users/123123') && method === 'GET':
                     return getUsers();
-                case url.match(/\/users\/\d+$/) && method === 'GET':
+                case url.match(/\/users\/\d+$\/123123/) && method === 'GET':
                     return getUserById();
-                case url.match(/\/users\/\d+$/) && method === 'PUT':
+                case url.match(/\/users\/\d+$\/123123/) && method === 'PUT':
                     return updateUser();
-                case url.match(/\/users\/\d+$/) && method === 'DELETE':
+                case url.match(/\/users\/\d+$\/123123/) && method === 'DELETE':
                     return deleteUser();
 
               // Products
-                case url.endsWith('/food-products') && method === 'GET':
+                case url.endsWith('/food-products/123123') && method === 'GET':
                     return getProducts();
 
               // Product
-                case url.endsWith('/food-product/add') && method === 'POST':
+                case url.endsWith('/food-product/add/123123') && method === 'POST':
                     return addProduct();
-                case url.match(/\/food-product\/\d+$/) && method === 'GET':
+                case url.match(/\/food-product\/\d+$\/123123/) && method === 'GET':
                     return getProductById();
-                case url.match(/\/food-product\/\d+$/) && method === 'PUT':
+                case url.match(/\/food-product\/\d+$\/123123/) && method === 'PUT':
                     return updateProduct();
-                case url.match(/\/food-product\/\d+$/) && method === 'DELETE':
+                case url.match(/\/food-product\/\d+$\/123123/) && method === 'DELETE':
                     return deleteProduct();
 
               // Recipes
-                case url.endsWith('/food-recipes') && method === 'GET':
+                case url.endsWith('/food-recipes\/123123') && method === 'GET':
                   return getRecipes();
 
                 default:
@@ -156,13 +160,20 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 
         function getUsers() {
             if (!isLoggedIn()) { return unauthorized(); }
+
+            console.log('getUsers() {users} ....:');
+            console.log(users);
+
             return ok(users);
         }
 
         function getUserById() {
             if (!isLoggedIn()) { return unauthorized(); }
-
             const user = users.find(x => x.id === idFromUrl());
+
+            console.log('getUserById() {user} ....:');
+            console.log(user);
+
             return ok(user);
         }
 

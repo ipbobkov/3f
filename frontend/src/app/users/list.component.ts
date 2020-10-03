@@ -17,6 +17,9 @@ export class ListComponent implements OnInit {
             .pipe(first())
             .subscribe(data => {
 
+              console.log('resp ....:');
+              console.log(resp);
+
               console.log('data ....:');
               console.log(JSON.stringify(data));
 
@@ -24,10 +27,10 @@ export class ListComponent implements OnInit {
 
               console.log('data[\'hydra:member\'] ....:');
               console.log(JSON.stringify(data['hydra:member']));
-            });
 
-        console.log('resp ....:');
-        console.log(resp);
+              console.log('this.users ....:');
+              console.log(JSON.stringify(this.users));
+            });
     }
 
     deleteUser(id: string) {
@@ -35,8 +38,20 @@ export class ListComponent implements OnInit {
         user.isDeleting = true;
         this.accountService.delete(id)
             .pipe(first())
-            .subscribe(() => {
-                this.users = this.users.filter(x => x.id !== id);
+            .subscribe(data => {
+              console.log('this.users ....:');
+              console.log(this.users);
+
+              console.log('data ....:');
+              console.log(data);
+
+              this.users = this.users.filter(x => x.id !== id);
+
+              console.log('this.users ....:');
+              console.log(this.users);
+
+              console.log('data ....:');
+              console.log(data);
             });
     }
 

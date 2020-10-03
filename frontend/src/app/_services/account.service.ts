@@ -87,8 +87,8 @@ export class AccountService {
         this.router.navigate(['/account/login']);
     }
 
-    register(user: User) {
-        return this.http.post(`${environment.apiUrl}/users/register`, user);
+    register(params: User) {
+        return this.http.post(`${environment.apiUrl}/api/users`, params);
     }
 
     getAll() {
@@ -104,7 +104,7 @@ export class AccountService {
     }
 
     getById(id: string) {
-      const addr = `${environment.apiUrl}/api/users/${id}/`;
+      const addr = `${environment.apiUrl}/api/users/${id}`;
       console.log('ret = this.http.get<User>(' +  addr + ');');
 
       const ret = this.http.get<User>(addr);
@@ -117,7 +117,7 @@ export class AccountService {
 
     update(id, params) {
       const addr = `${environment.apiUrl}/api/users/${id}`;
-      console.log('ret = this.http.put(' +  addr + ', params);');
+      console.log('ret = this.http.patch(' +  addr + ', params);');
       console.log('params ....:');
       console.log(params);
 
@@ -137,13 +137,20 @@ export class AccountService {
     }
 
     delete(id: string) {
-        return this.http.delete(`${environment.apiUrl}/users/${id}`)
+      const addr = `${environment.apiUrl}/api/users/${id}`;
+      console.log('ret = this.http.delete(' +  addr);
+
+      return this.http.delete(addr)
             .pipe(map(x => {
-                // auto logout if the logged in user deleted their own record
-                if (id === this.userValue.id) {
+
+              console.log('x ....:');
+              console.log(x);
+
+              // auto logout if the logged in user deleted their own record
+              if (id === this.userValue.id) {
                     this.logout();
-                }
-                return x;
+              }
+              return x;
             }));
     }
 }
